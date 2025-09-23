@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const mete = [
   {
@@ -82,16 +82,49 @@ const mete = [
 
 export default function DettaglioViaggio() {
   const { id } = useParams();
-  const viaggio = mete[id]; // id è l'indice nell'array mete
+  const navigate = useNavigate();
+  const viaggio = mete[id];
   const [stato, setStato] = useState("in attesa");
   const [prenotato, setPrenotato] = useState(false);
+  const [postiDisponibili, setPostiDisponibili] = useState(10);
 
   if (!viaggio) return <div>Viaggio non trovato</div>;
 
   const acconto = viaggio.price ? (viaggio.price * 0.1).toFixed(2) : null;
+  const handlePrenota = () => {
+    if (postiDisponibili > 0) {
+      setPrenotato(true);
+      setStato("in attesa");
+      setPostiDisponibili(postiDisponibili - 1);
+    }
+  };
 
   return (
-    <div style={{ maxWidth: 600, margin: "40px auto", background: "#f9f9f9", borderRadius: 8, padding: 24 }}>
+    <div style={{ maxWidth: 600, margin: "40px auto", background: "#f9f9f9", borderRadius: 8, padding: 24, position: "relative" }}>
+      <button
+        onClick={() => navigate("/cerca-viaggi")}
+        style={{
+          position: "absolute",
+          top: -35,
+          right: -35,
+          background: "#fff",
+          border: "1px solid #ccc",
+          borderRadius: "50%",
+          fontSize: 24,
+          cursor: "pointer",
+          color: "#888",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+          width: 36,
+          height: 36,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 10,
+        }}
+        aria-label="Chiudi"
+      >
+        ×
+      </button>
       <img src={viaggio.img} alt={viaggio.titolo} style={{ width: "100%", borderRadius: 8 }} />
       <h2>{viaggio.titolo}</h2>
       <p>{viaggio.descrizione}</p>
@@ -101,16 +134,12 @@ export default function DettaglioViaggio() {
       <p>
         <strong>Stato:</strong> {stato}
       </p>
+      <p>
+        <strong>Posti disponibili:</strong> {postiDisponibili}
+      </p>
       {!prenotato ? (
-        <button
-          className="button"
-          style={{ marginTop: 16 }}
-          onClick={() => {
-            setPrenotato(true);
-            setStato("in attesa");
-          }}
-        >
-          Prenota
+        <button className="button" style={{ marginTop: 16 }} onClick={handlePrenota} disabled={postiDisponibili === 0}>
+          {postiDisponibili === 0 ? "Posti esauriti" : "Prenota"}
         </button>
       ) : (
         <div style={{ marginTop: 16 }}>
