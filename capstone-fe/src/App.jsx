@@ -6,8 +6,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CercaViaggi from "./pages/CercaViaggi";
 import PrenotaViaggi from "./pages/PrenotaViaggi";
-import { useSelector } from "react-redux";
 import DettaglioViaggio from "./components/DettaglioViaggio";
+import { useSelector } from "react-redux";
 
 function App() {
   const token = useSelector((state) => state.auth.token);
@@ -22,7 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/cerca-viaggi" element={<CercaViaggi />} />
           <Route path="/prenota-viaggi" element={token ? <PrenotaViaggi /> : <Navigate to="/login" />} />
-          <Route path="/prenota-viaggi/:id" element={<DettaglioViaggio />} />
+          <Route path="/dettaglio-viaggio/:id" element={<DettaglioViaggio />} />
         </Routes>
       </div>
       <div className="footer">Capstone Liliya Savitska</div>

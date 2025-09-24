@@ -17,7 +17,7 @@ export default function Navbar() {
     <nav className="nav">
       <div>
         <Link to="/" className="button logo">
-          <strong>Lily Travels</strong>
+          <strong>Lily Travels ✈️</strong>
         </Link>
       </div>
       <div className="links">
