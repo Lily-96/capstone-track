@@ -47,11 +47,11 @@ export default function CercaViaggi() {
                 src={meta.img}
                 alt={meta.titolo}
                 style={{
-                  width: "120px",
-                  height: "80px",
+                  width: "160px",
+                  height: "120px",
                   objectFit: "cover",
                   borderRadius: "8px",
-                  marginRight: "16px",
+                  marginRight: "20px",
                 }}
               />
               <div
@@ -60,7 +60,7 @@ export default function CercaViaggi() {
                   flex: 1,
                   alignItems: "center",
                   justifyContent: "space-between",
-                  height: "80px",
+                  height: "120px",
                 }}
               >
                 <div>
@@ -68,16 +68,20 @@ export default function CercaViaggi() {
                   <p style={{ margin: 0 }}>{meta.descrizione}</p>
                   <button
                     className="button"
-                    style={{ marginTop: "8px", marginRight: "8px", color: "black" }}
+                    style={{ marginTop: "10px", marginRight: "10px", color: "white", background: "#28a745", fontWeight: "bold", padding: "8px 16px" }}
                     onClick={() => navigate(`/dettaglio-viaggio/${realIdx}`)}
                   >
                     Dettagli
                   </button>
-                  <button className="button" style={{ marginTop: "8px", color: "black" }} onClick={() => handlePrenotaDiretta(meta)}>
+                  <button
+                    className="button"
+                    style={{ marginTop: "10px", color: "white", background: "#007bff", fontWeight: "bold", padding: "8px 16px" }}
+                    onClick={() => handlePrenotaDiretta(meta)}
+                  >
                     Prenota
                   </button>
                 </div>
-                <p style={{ fontWeight: "bold", margin: 0 }}>{meta.price}€</p>
+                <p style={{ fontWeight: "bold", margin: 0, fontSize: "1.1rem" }}>{meta.price}€</p>
               </div>
             </div>
           );

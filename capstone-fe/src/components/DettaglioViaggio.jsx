@@ -25,8 +25,11 @@ export default function DettaglioViaggio() {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: "40px auto", background: "#f9f9f9", borderRadius: 8, padding: 24 }}>
+    <div style={{ maxWidth: 600, margin: "40px auto", background: "#f9f9f9", borderRadius: 8, padding: 24, position: "relative" }}>
       <img src={viaggio.img} alt={viaggio.titolo} style={{ width: "100%", borderRadius: 8 }} />
+      <span className="close-btn" onClick={() => navigate(-1)}>
+        &times;
+      </span>
       <h2>{viaggio.titolo}</h2>
       <p>{viaggio.descrizione}</p>
       <p>
