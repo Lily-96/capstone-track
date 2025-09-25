@@ -1,12 +1,16 @@
-import React from 'react'
+import React from "react";
 
-export default function CardViaggio({title, desc, img, onClick}){
+export default function CardViaggio({ title, desc, img, onClick }) {
   return (
     <div className="card">
-      <img src={img} alt={title} />
-      <h3>{title}</h3>
+      <div style={{ position: "relative" }}>
+        <img src={img} alt={title} />
+        <div className="card-title-overlay">{title}</div>
+      </div>
       <p>{desc}</p>
-      <button className="button" onClick={onClick}>Scopri di più</button>
+      <button className="button" onClick={onClick}>
+        Scopri di più
+      </button>
     </div>
-  )
+  );
 }

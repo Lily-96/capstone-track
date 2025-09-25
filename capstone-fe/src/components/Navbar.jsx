@@ -27,6 +27,7 @@ export default function Navbar() {
         <Link to="/prenota-viaggi" className="button">
           Prenota Viaggi
         </Link>
+
         {!token ? (
           <>
             <Link to="/login">
